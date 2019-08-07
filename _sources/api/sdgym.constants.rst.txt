@@ -1,0 +1,7 @@
+sdgym.constants module
+======================
+
+.. automodule:: sdgym.constants
+   :members:
+   :undoc-members:
+   :show-inheritance:

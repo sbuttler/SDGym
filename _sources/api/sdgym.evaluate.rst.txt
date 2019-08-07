@@ -1,0 +1,7 @@
+sdgym.evaluate module
+=====================
+
+.. automodule:: sdgym.evaluate
+   :members:
+   :undoc-members:
+   :show-inheritance:

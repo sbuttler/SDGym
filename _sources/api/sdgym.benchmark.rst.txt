@@ -1,0 +1,7 @@
+sdgym.benchmark module
+======================
+
+.. automodule:: sdgym.benchmark
+   :members:
+   :undoc-members:
+   :show-inheritance:

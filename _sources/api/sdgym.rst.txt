@@ -1,0 +1,27 @@
+sdgym package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+
+   sdgym.synthesizers
+
+Submodules
+----------
+
+.. toctree::
+
+   sdgym.benchmark
+   sdgym.constants
+   sdgym.data
+   sdgym.evaluate
+
+Module contents
+---------------
+
+.. automodule:: sdgym
+   :members:
+   :undoc-members:
+   :show-inheritance:
