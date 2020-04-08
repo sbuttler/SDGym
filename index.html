@@ -103,6 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="readme.html#benchmark">Benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#using-the-demo-synthesizers">Using the Demo Synthesizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#benchmarking-the-demo-synthesizers">Benchmarking the Demo Synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#list-of-demo-synthesizers">List of Demo Synthesizers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#what-s-next">What’s next?</a></li>
@@ -111,6 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="readme.html#tgan">TGAN</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#references">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
@@ -523,6 +525,61 @@ synthesizer function:</p></li>
 </pre></div>
 </div>
 </div>
+<div class="section" id="list-of-demo-synthesizers">
+<h2>List of Demo Synthesizers<a class="headerlink" href="#list-of-demo-synthesizers" title="Permalink to this headline">¶</a></h2>
+<p>Here we list all implemented synthesizers and corresponding publications.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IdentitySynthesizer</span></code></p></td>
+<td><p>The synthetic data is the same as training data.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UniformSynthesizer</span></code></p></td>
+<td><p>Each column in the synthetic data is sampled independently and uniformly.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IndependentSynthesizer</span></code></p></td>
+<td><p>Each column in the synthetic data is sampled independently. Continuous columns are modeled by Gaussian mixture model. Discrete columns are sampled from the PMF of training data.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CLBNSynthesizer</span></code></p></td>
+<td></td>
+<td><p>[2]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PrivBNSynthesizer</span></code></p></td>
+<td></td>
+<td><p>[3]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TableganSynthesizer</span></code></p></td>
+<td></td>
+<td><p>[4]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VEEGANSynthesizer</span></code></p></td>
+<td></td>
+<td><p>[5]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TVAESynthesizer</span></code></p></td>
+<td></td>
+<td><p>[1]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CTGANSynthesizer</span></code></p></td>
+<td></td>
+<td><p>[1]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="what-s-next">
 <h1>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h1>
@@ -547,6 +604,15 @@ relational integrity on sampled records.</p>
 <p><a class="reference external" href="https://github.com/sdv-dev/TGAN">TGAN</a> is a GAN based model for synthesizing tabular data.
 It’s also developed by the <a class="reference external" href="https://dai-lab.github.io/">MIT’s Data to AI Lab</a> and is under
 active development.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<p>[1] Lei Xu, Maria Skoularidou, Alfredo Cuesta-Infante, Kalyan Veeramachaneni. “Modeling tabular data using conditional gan.” (2019) <a class="reference external" href="https://papers.nips.cc/paper/8953-modeling-tabular-data-using-conditional-gan.pdf">(pdf)</a></p>
+<p>[2] C. Chow, Cong Liu. “Approximating discrete probability distributions with dependence trees.” (1968) <a class="reference external" href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.133.9772&amp;rep=rep1&amp;type=pdf">(pdf)</a></p>
+<p>[3] Jun  Zhang, Graham Cormode, Cecilia M. Procopiuc, Divesh Srivastava, and Xiaokui Xiao. “Privbayes: Private data release via bayesian networks.” (2017) <a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3134428">(pdf)</a></p>
+<p>[4] Noseong Park, Mahmoud Mohammadi, Kshitij Gorde, Sushil Jajodia, Hongkyu Park, Youngmin Kim. “Data synthesis based on generative adversarial networks.” (2018) <a class="reference external" href="https://dl.acm.org/ft_gateway.cfm?id=3242929&amp;type=pdf">(pdf)</a></p>
+<p>[5] Akash Srivastava, Lazar Valkov, Chris Russell, Michael U. Gutmann, Charles Sutton. “Veegan: Reducing mode collapse in gans using implicit variational learning.” (2017) <a class="reference external" href="https://papers.nips.cc/paper/6923-veegan-reducing-mode-collapse-in-gans-using-implicit-variational-learning.pdf">(pdf)</a></p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul>
@@ -570,6 +636,7 @@ active development.</p>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#benchmark">Benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#using-the-demo-synthesizers">Using the Demo Synthesizers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#benchmarking-the-demo-synthesizers">Benchmarking the Demo Synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#list-of-demo-synthesizers">List of Demo Synthesizers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="readme.html#what-s-next">What’s next?</a></li>
@@ -578,6 +645,7 @@ active development.</p>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#tgan">TGAN</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#references">References</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -618,7 +686,6 @@ active development.</p>
 </ul>
 </li>
 </ul>
-</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
