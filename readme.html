@@ -86,34 +86,33 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">SDGym - Synthetic Data Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#overview">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#what-is-a-synthesizer-function">What is a synthesizer function?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-data-should-your-synthesizer-work-with">What data should your synthesizer work with?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-synthetic-data-generator">What is a Synthetic Data Generator?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#benchmark-datasets">Benchmark datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#demo-synthesizers">Demo Synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-leaderboard">Current Leaderboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gaussian-mixture-simulated-data">Gaussian Mixture Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bayesian-networks-simulated-data">Bayesian Networks Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#real-world-datasets">Real World Datasets</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#install">Install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-with-pip">Install with pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-from-source">Install from source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-for-development">Install for Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compile-c-dependencies">Compile C++ dependencies</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#id1">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#benchmark">Benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-the-demo-synthesizers">Using the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmarking-the-demo-synthesizers">Benchmarking the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#list-of-demo-synthesizers">List of Demo Synthesizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarking-your-own-synthesizer">Benchmarking your own synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarking-the-sdgym-synthesizers">Benchmarking the SDGym Synthesizers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#what-s-next">What’s next?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#additional-references">Additional References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#related-projects">Related Projects</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#sdv">SDV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ctgan">CTGAN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tgan">TGAN</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#references">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
@@ -223,125 +222,170 @@
 </p><a class="reference external image-reference" href="https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha"><img alt="Development Status" src="https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow" /></a>
 <a class="reference external image-reference" href="https://travis-ci.org/sdv-dev/SDGym"><img alt="Travis" src="https://travis-ci.org/sdv-dev/SDGym.svg?branch=master" /></a>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/sdgym"><img alt="PyPi Shield" src="https://img.shields.io/pypi/v/sdgym.svg" /></a>
-<p><span class="raw-html-m2r"><!--[![Coverage Status](https://codecov.io/gh/sdv-dev/SDGym/branch/master/graph/badge.svg)](https://codecov.io/gh/sdv-dev/SDGym)--></span>
-<span class="raw-html-m2r"><!--[![Downloads](https://pepy.tech/badge/sdgym)](https://pepy.tech/project/sdgym)--></span></p>
+<a class="reference external image-reference" href="https://pepy.tech/project/sdgym"><img alt="Downloads" src="https://pepy.tech/badge/sdgym" /></a>
+<p><span class="raw-html-m2r"><!--[![Coverage Status](https://codecov.io/gh/sdv-dev/SDGym/branch/master/graph/badge.svg)](https://codecov.io/gh/sdv-dev/SDGym)--></span></p>
 <div class="section" id="sdgym-synthetic-data-gym">
 <h1>SDGym - Synthetic Data Gym<a class="headerlink" href="#sdgym-synthetic-data-gym" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
+<ul>
 <li><p>License: <a class="reference external" href="https://github.com/sdv-dev/SDGym/blob/master/LICENSE">MIT</a></p></li>
 <li><p>Development Status: <a class="reference external" href="https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha">Pre-Alpha</a></p></li>
-<li><p>Documentation: <a class="reference external" href="https://sdv-dev.github.io/SDGym/">https://sdv-dev.github.io/SDGym/</a></p></li>
-<li><p>Homepage: <a class="reference external" href="https://github.com/sdv-dev/SDGym">https://github.com/sdv-dev/SDGym</a></p></li>
+<li><p>Homepage: <a class="reference external" href="https://github.com/sdv-dev/SDGym">https://github.com/sdv-dev/SDGym</a></p>
+<!--* Documentation: https://sdv-dev.github.io/SDGym/--></li>
 </ul>
 </div>
 <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>Synthetic Data Gym (SDGym) is a framework to benchmark the performance of synthetic data generators
-for non-temporal tabular data. SDGym is based on the paper <a class="reference external" href="https://arxiv.org/abs/1907.00503">Modeling Tabular data using Conditional
-GAN</a>, and the project is part of the <a class="reference external" href="https://dai.lids.mit.edu/">Data to AI
-Laboratory</a> at MIT.</p>
-<p>The benchmarking of a synthesizer is a process in which different datasets are generated by your
-synthesizer. Then, each couple of real and synthetic data is evaluated with multiple scores.</p>
-<div class="section" id="what-is-a-synthesizer-function">
-<h2>What is a synthesizer function?<a class="headerlink" href="#what-is-a-synthesizer-function" title="Permalink to this headline">¶</a></h2>
-<p>In order to use <strong>SDGym</strong> you will need a synthesizer function.
-This is a function that takes as input a numpy matrix with real data and outputs another numpy
-matrix with the same shape filled with synthesized data.</p>
-<p>Also, alongside the real data, some additional variables informing about the column contents
-will be passed, which means that the exact signature of the function will be like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_synthesizer_function</span><span class="p">(</span>
-    <span class="n">real_data</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-    <span class="n">categorical_columns</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
-    <span class="n">ordinal_columns</span><span class="p">:</span> <span class="nb">list</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">syntehtesized_data</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
-</pre></div>
-</div>
-<p>If your synthesizer implements a different interface, you can wrap it in a function like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_synthesizer_function</span><span class="p">(</span><span class="n">real_data</span><span class="p">,</span> <span class="n">categorical_columns</span><span class="p">,</span> <span class="n">ordinal_columns</span><span class="p">):</span>
-    <span class="c1"># ...do all necessary steps here...</span>
-    <span class="k">return</span> <span class="n">synthesized_data</span>
-</pre></div>
-</div>
-<p>This function should contain inside it all the parameters and arguments needed to use your
-synthesizer and call it to generate the new synthesized data based on the real data that is
-being passed.</p>
-</div>
-<div class="section" id="what-data-should-your-synthesizer-work-with">
-<h2>What data should your synthesizer work with?<a class="headerlink" href="#what-data-should-your-synthesizer-work-with" title="Permalink to this headline">¶</a></h2>
-<p>As we mentioned in the section before, the main input of <strong>SDGym</strong> is a synthesizer to be
-benchmarked, which is expected to be a function that has as unique input and output a table of
-data.</p>
-<p>The inputs for your synthesizer funciton should be:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">real_data</span></code>: a 2D <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> with the real data the your synthesizer will attempt to imitate.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">categorical_columns</span></code>: a <code class="docutils literal notranslate"><span class="pre">list</span></code> with the indexes of any columns that should be considered
-categorical independently on their type.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ordinal_columns</span></code>: a <code class="docutils literal notranslate"><span class="pre">list</span></code> with the indexes of any integer columns that should be treated as
-ordinal values.</p></li>
-</ul>
-<p>And the output should be a single 2D <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> with the exact same shape as the <code class="docutils literal notranslate"><span class="pre">real_data</span></code>
-matrix.</p>
+for tabular data. SDGym is a project of the <a class="reference external" href="https://dai.lids.mit.edu/">Data to AI Laboratory</a> at MIT.</p>
+<div class="section" id="what-is-a-synthetic-data-generator">
+<h2>What is a Synthetic Data Generator?<a class="headerlink" href="#what-is-a-synthetic-data-generator" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>Synthetic Data Generator</strong> is a Python function (or class method) that takes as input some
+data, which we call the <em>real</em> data, learns a model from it, and outputs new <em>synthetic</em> data that
+has similar mathematical properties as the <em>real</em> one.</p>
+<p>Please refer to the <a class="reference external" href="SYNTHESIZERS.md">synthesizers documentation</a> for instructions about how to
+implement your own Synthetic Data Generator and integrate with SDGym. You can also read about how
+to use the ones included in <strong>SDGym</strong> and see the current <a class="reference external" href="SYNTHESIZERS.md#leaderboard">leaderboard</a>.</p>
 </div>
 <div class="section" id="benchmark-datasets">
 <h2>Benchmark datasets<a class="headerlink" href="#benchmark-datasets" title="Permalink to this headline">¶</a></h2>
-<p>All the datasets used for the benchmarking can be found inside the <a class="reference external" href="http://sdgym.s3.amazonaws.com/index.html">sgdym S3 bucket</a>
-in the form of an <code class="docutils literal notranslate"><span class="pre">.npz</span></code> numpy matrix archive and a <code class="docutils literal notranslate"><span class="pre">.json</span></code> metadata file that contains information
-about the dataset structure and their columns.</p>
-<p>In order to load these datasets in the same format as they will be passed to your synthesizer function
-you can use the <code class="docutils literal notranslate"><span class="pre">sdgym.load_dataset</span></code> function passing the name of the dataset to load.</p>
-<p>In this example, we will load the <code class="docutils literal notranslate"><span class="pre">adult</span></code> dataset:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sdgym</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-
-<span class="n">data</span><span class="p">,</span> <span class="n">categorical_columns</span><span class="p">,</span> <span class="n">ordinal_columns</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;adult&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This will return a numpy matrix with the data that will be passed to your synthesizer function,
-as well as the list of indexes for the categorical and ordinal columns:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
-<span class="go">array([[2.70000e+01, 0.00000e+00, 1.77119e+05, ..., 4.40000e+01,</span>
-<span class="go">        0.00000e+00, 0.00000e+00],</span>
-<span class="go">       [2.70000e+01, 0.00000e+00, 2.16481e+05, ..., 4.00000e+01,</span>
-<span class="go">        0.00000e+00, 0.00000e+00],</span>
-<span class="go">       [2.50000e+01, 0.00000e+00, 2.56263e+05, ..., 4.00000e+01,</span>
-<span class="go">        0.00000e+00, 0.00000e+00],</span>
-<span class="go">       ...,</span>
-<span class="go">       [4.50000e+01, 0.00000e+00, 2.07540e+05, ..., 4.00000e+01,</span>
-<span class="go">        0.00000e+00, 1.00000e+00],</span>
-<span class="go">       [5.10000e+01, 0.00000e+00, 1.80807e+05, ..., 4.00000e+01,</span>
-<span class="go">        0.00000e+00, 0.00000e+00],</span>
-<span class="go">       [6.10000e+01, 4.00000e+00, 1.86451e+05, ..., 4.00000e+01,</span>
-<span class="go">        0.00000e+00, 1.00000e+00]], dtype=float32)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">categorical_columns</span>
-<span class="go">[1, 5, 6, 7, 8, 9, 13, 14]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ordinal_columns</span>
-<span class="go">[3]</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="demo-synthesizers">
-<h2>Demo Synthesizers<a class="headerlink" href="#demo-synthesizers" title="Permalink to this headline">¶</a></h2>
-<p>In order to get started using the benchmarking tool, some demo Synthesizers have been included
-in the library.</p>
-<p>These synthesizers are classes that can be imported from the <code class="docutils literal notranslate"><span class="pre">sdgym.synthesizers</span></code> module and have
-the following methods:</p>
+<p><strong>SDGym</strong> evaluates the performance of <strong>Synthetic Data Generators</strong> using datasets
+that are in three families:</p>
 <ul class="simple">
-<li><p><cite>fit</cite>: Fits the synthesizer on the data. Expects the following arguments:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">(numpy.ndarray)</span></code>: 2 dimensional Numpy matrix with the real data to learn from.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">categorical_columns</span> <span class="pre">(list</span> <span class="pre">or</span> <span class="pre">tuple)</span></code>: List of indexes of the columns that are categorical within the dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ordinal_columns</span> <span class="pre">(list</span> <span class="pre">or</span> <span class="pre">tuple)</span></code>: List of indexes of the columns that are ordinal within the dataset.</p></li>
+<li><p>Simulated data generated using Gaussian Mixtures</p></li>
+<li><p>Simulated data generated using Bayesian Networks</p></li>
+<li><p>Real world datasets</p></li>
 </ul>
-</li>
-<li><p><cite>sample</cite>: Generates new data resembling the original dataset. Expects the following arguments:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">(int)</span></code>: Number of samples to generate.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fit_sample</span></code>: Fits the synthesizer on the dataset and then samples as many rows as there were in
-the original dataset. It expects the same arguments as the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method, and is ready to be directly
-passed to the <code class="docutils literal notranslate"><span class="pre">benchmark</span></code> function in order to evaluate the synthesizer performance.</p></li>
-</ul>
-<p>A complete example about how to use them can be found below in the <a class="reference external" href="#usage">Usage</a> section.</p>
+<p>Further details about how these datasets were generated can be found in the <a class="reference external" href="https://arxiv.org/abs/1907.00503">Modeling Tabular
+data using Conditional GAN</a> paper and in the <a class="reference external" href="DATASETS.md">datasets
+documentation</a>.</p>
+</div>
+<div class="section" id="current-leaderboard">
+<h2>Current Leaderboard<a class="headerlink" href="#current-leaderboard" title="Permalink to this headline">¶</a></h2>
+<p>This is a summary of the current SDGym leaderboard, showing the number of datasets in which
+each Synthesizer obtained the best score.</p>
+<p>The complete scores table can be found in the <a class="reference external" href="SYNTHESIZERS.md#leaderboard">synthesizers document</a>
+and it can also be downloaded as a CSV file form here: <a class="reference external" href="sdgym/leaderboard.csv">sdgym/leaderboard.csv</a></p>
+<p>Detailed leaderboard results for all the releases are available <a class="reference external" href="https://docs.google.com/spreadsheets/d/1hllKn_wDjkr_Yqq9uO5TlQNlj767FSaONC3vrtovaOQ/edit?usp=sharing">in this Google Docs Spreadsheet</a>.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">warning</dt>
+<dd class="field-odd"><p><strong>NOTE</strong>: The following leaderboard and the detailed results for 0.2.0 are derived from</p>
+</dd>
+</dl>
+<p>the paper. We are currently running all synthesizers with the new API and we will update the
+leaderboard with the 0.2.1 release (coming soon!).</p>
+</div></blockquote>
+<div class="section" id="gaussian-mixture-simulated-data">
+<h3>Gaussian Mixture Simulated Data<a class="headerlink" href="#gaussian-mixture-simulated-data" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Synthesizer</p></th>
+<th class="head"><p>0.2.0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CLBNSynthesizer</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>PrivBNSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>MedganSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>VEEGANSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>TableganSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>TVAESynthesizer</strong></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>CTGANSynthesizer</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bayesian-networks-simulated-data">
+<h3>Bayesian Networks Simulated Data<a class="headerlink" href="#bayesian-networks-simulated-data" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Synthesizer</p></th>
+<th class="head"><p>0.2.0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CLBNSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PrivBNSynthesizer</strong></p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>MedganSynthesizer</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>VEEGANSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>TableganSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TVAESynthesizer</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>CTGANSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="real-world-datasets">
+<h3>Real World Datasets<a class="headerlink" href="#real-world-datasets" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Synthesizer</p></th>
+<th class="head"><p>0.2.0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CLBNSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>PrivBNSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>MedganSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>VEEGANSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>TableganSynthesizer</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>TVAESynthesizer</strong></p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>CTGANSynthesizer</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="section" id="install">
@@ -352,243 +396,84 @@ passed to the <code class="docutils literal notranslate"><span class="pre">bench
 <p>Also, although it is not strictly required, the usage of a <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">virtualenv</a>
 is highly recommended in order to avoid interfering with other software installed in the system
 where <strong>SDGym</strong> is run.</p>
-<p>These are the minimum commands needed to create a virtualenv using python3.6 for <strong>SDGym</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install virtualenv
-virtualenv -p <span class="k">$(</span>which python3.6<span class="k">)</span> sdgym-venv
-</pre></div>
-</div>
-<p>Afterwards, you have to execute this command to have the virtualenv activated:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> sdgym-venv/bin/activate
-</pre></div>
-</div>
-<p>Remember about executing it every time you start a new console to work on <strong>SDGym</strong>!</p>
 </div>
 <div class="section" id="install-with-pip">
 <h2>Install with pip<a class="headerlink" href="#install-with-pip" title="Permalink to this headline">¶</a></h2>
-<p>After creating the virtualenv and activating it, we recommend using
-<a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> in order to install <strong>SDGym</strong>:</p>
+<p>The easiest and recommended way to install <strong>SDGym</strong> is using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install sdgym
 </pre></div>
 </div>
 <p>This will pull and install the latest stable release from <a class="reference external" href="https://pypi.org/">PyPi</a>.</p>
-</div>
-<div class="section" id="install-from-source">
-<h2>Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h2>
-<p>Alternatively, with your virtualenv activated, you can clone the repository and install it from
-source by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> on the <code class="docutils literal notranslate"><span class="pre">stable</span></code> branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:sdv-dev/SDGym.git
-<span class="nb">cd</span> SDGym
-git checkout stable
-make install
-</pre></div>
+<p>If you want to install it from source or contribute to the project please read the
+<a class="reference external" href="https://sdv-dev.github.io/SDGym/contributing.html#get-started">Contributing Guide</a> for
+more details about how to do it.</p>
 </div>
 </div>
-<div class="section" id="install-for-development">
-<h2>Install for Development<a class="headerlink" href="#install-for-development" title="Permalink to this headline">¶</a></h2>
-<p>If you want to contribute to the project, a few more steps are required to make the project ready
-for development.</p>
-<p>First, please head to <a class="reference external" href="https://github.com/sdv-dev/SDGym">the GitHub page of the project</a>
-and make a fork of the project under you own username by clicking on the <strong>fork</strong> button on the
-upper right corner of the page.</p>
-<p>Afterwards, clone your fork and create a branch from master with a descriptive name that includes
-the number of the issue that you are going to work on:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:<span class="o">{</span>your username<span class="o">}</span>/SDGym.git
-<span class="nb">cd</span> SDGym
-git branch issue-xx-cool-new-feature master
-git checkout issue-xx-cool-new-feature
-</pre></div>
-</div>
-<p>Finally, install the project with the following command, which will install some additional
-dependencies for code linting and testing.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make install-develop
-</pre></div>
-</div>
-<p>Make sure to use them regularly while developing by running the commands <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> and
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>.</p>
-</div>
-<div class="section" id="compile-c-dependencies">
-<h2>Compile C++ dependencies<a class="headerlink" href="#compile-c-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>In order to be able to use all the features from SDGym, some dependencies written in C++ need to
-be compiled.</p>
-<p>In order to do this:</p>
-<ol class="arabic simple">
-<li><p>make sure to have installed all the necessary dependencies to compile C++. In Linux distributions
-based on Ubuntu, this can be done with the following command:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install build-essential
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Execute:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make compile
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id1">
-<h1>Usage<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="benchmark">
-<h2>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="benchmarking-your-own-synthesizer">
+<h2>Benchmarking your own synthesizer<a class="headerlink" href="#benchmarking-your-own-synthesizer" title="Permalink to this headline">¶</a></h2>
 <p>All you need to do in order to use the SDGym Benchmark, is to import and call the <code class="docutils literal notranslate"><span class="pre">sdgym.benchmark</span></code>
 function passing it your synthesizer function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sdgym</span> <span class="kn">import</span> <span class="n">benchmark</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sdgym</span> <span class="kn">import</span> <span class="n">benchmark</span>
 
-<span class="n">scores</span> <span class="o">=</span> <span class="n">benchmark</span><span class="p">(</span><span class="n">my_synthesizer_function</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">benchmark</span><span class="p">(</span><span class="n">synthesizers</span><span class="o">=</span><span class="n">my_synthesizer_function</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The output of the <code class="docutils literal notranslate"><span class="pre">benchmark</span></code> function will be a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> containing all the scores
-computed by the different evaluators:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>   accuracy        f1                                               name  distance dataset  iter
-0    0.7985  0.658301  DecisionTreeClassifier(class_weight=&#39;balanced&#39;...       0.0   adult     0
-1    0.8607  0.680285  AdaBoostClassifier(algorithm=&#39;SAMME.R&#39;, base_e...       0.0   adult     0
-2    0.7948  0.660040  LogisticRegression(C=1.0, class_weight=&#39;balanc...       0.0   adult     0
-3    0.8489  0.678716  MLPClassifier(activation=&#39;relu&#39;, alpha=0.0001,...       0.0   adult     0
-0    0.7968  0.655943  DecisionTreeClassifier(class_weight=&#39;balanced&#39;...       0.0   adult     1
-1    0.8607  0.680285  AdaBoostClassifier(algorithm=&#39;SAMME.R&#39;, base_e...       0.0   adult     1
-2    0.7948  0.660040  LogisticRegression(C=1.0, class_weight=&#39;balanc...       0.0   adult     1
-3    0.8472  0.683775  MLPClassifier(activation=&#39;relu&#39;, alpha=0.0001,...       0.0   adult     1
-0    0.7963  0.655272  DecisionTreeClassifier(class_weight=&#39;balanced&#39;...       0.0   adult     2
-1    0.8607  0.680285  AdaBoostClassifier(algorithm=&#39;SAMME.R&#39;, base_e...       0.0   adult     2
-2    0.7948  0.660040  LogisticRegression(C=1.0, class_weight=&#39;balanc...       0.0   adult     2
-3    0.8511  0.684467  MLPClassifier(activation=&#39;relu&#39;, alpha=0.0001,...       0.0   adult     2
+<ul class="simple">
+<li><p>You can learn how to create your own synthesizer function <a class="reference external" href="SYNTHESIZERS.md">here</a>.</p></li>
+<li><p>You can learn about different arguments for benchmark function <a class="reference external" href="BENCHMARK.md">here</a>.</p></li>
+</ul>
+<p>The output of the <code class="docutils literal notranslate"><span class="pre">benchmark</span></code> function will be a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> containing the results obtained
+by your synthesizer on each dataset, as well as the results obtained previously by the SDGym
+synthesizers:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>                        adult/accuracy  adult/f1  ...  ring/test_likelihood
+IndependentSynthesizer         0.56530  0.134593  ...             -1.958888
+UniformSynthesizer             0.39695  0.273753  ...             -2.519416
+IdentitySynthesizer            0.82440  0.659250  ...             -1.705487
+...                                ...       ...  ...                   ...
+my_synthesizer_function        0.64865  0.210103  ...             -1.964966
 </pre></div>
 </div>
 </div>
-<div class="section" id="using-the-demo-synthesizers">
-<h2>Using the Demo Synthesizers<a class="headerlink" href="#using-the-demo-synthesizers" title="Permalink to this headline">¶</a></h2>
-<p>In order to use the synthesizer classes included in <strong>SDGym</strong>, you need to follow these steps:</p>
-<ol class="arabic simple">
-<li><p>Import the synthesizer class from <code class="docutils literal notranslate"><span class="pre">sdgym.synthesizers</span></code>:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sdgym.synthesizers</span> <span class="kn">import</span> <span class="n">IndependentSynthesizer</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Create an instance of the synthesizers passing any needed arguments. In this case we will use
-the <code class="docutils literal notranslate"><span class="pre">IndependentSynthesizer</span></code>, which can be instantiated with no initialization arguments:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">synthesizer</span> <span class="o">=</span> <span class="n">IndependentSynthesizer</span><span class="p">()</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Load some data to fit your synthesizer with. In this case, we will be loading the <code class="docutils literal notranslate"><span class="pre">adult</span></code>
-dataset:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sdgym</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="section" id="benchmarking-the-sdgym-synthesizers">
+<h2>Benchmarking the SDGym Synthesizers<a class="headerlink" href="#benchmarking-the-sdgym-synthesizers" title="Permalink to this headline">¶</a></h2>
+<p>If you want to run the SDGym benchmark on the SDGym Synthesizers you can directly pass the
+corresponding class, or a list of classes, to the <code class="docutils literal notranslate"><span class="pre">benchmark</span></code> function.</p>
+<p>For example, if you want to run the complete benchmark suite to evaluate all the existing
+synthesizers you can run (this will take a lot of time to run!):</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sdgym.synthesizers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CLBNSynthesizer</span><span class="p">,</span> <span class="n">CTGANSynthesizer</span><span class="p">,</span> <span class="n">IdentitySynthesizer</span><span class="p">,</span> <span class="n">IndependentSynthesizer</span><span class="p">,</span>
+    <span class="n">MedganSynthesizer</span><span class="p">,</span> <span class="n">PrivBNSynthesizer</span><span class="p">,</span> <span class="n">TableganSynthesizer</span><span class="p">,</span> <span class="n">TVAESynthesizer</span><span class="p">,</span>
+    <span class="n">UniformSynthesizer</span><span class="p">,</span> <span class="n">VEEGANSynthesizer</span><span class="p">)</span>
 
-<span class="n">data</span><span class="p">,</span> <span class="n">categorical_columns</span><span class="p">,</span> <span class="n">ordinal_columns</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;adult&#39;</span><span class="p">)</span>
+<span class="n">all_synthesizers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">CLBNSynthesizer</span><span class="p">,</span>
+    <span class="n">IdentitySynthesizer</span><span class="p">,</span>
+    <span class="n">IndependentSynthesizer</span><span class="p">,</span>
+    <span class="n">MedganSynthesizer</span><span class="p">,</span>
+    <span class="n">PrivBNSynthesizer</span><span class="p">,</span>
+    <span class="n">TableganSynthesizer</span><span class="p">,</span>
+    <span class="n">CTGANSynthesizer</span><span class="p">,</span>
+    <span class="n">TVAESynthesizer</span><span class="p">,</span>
+    <span class="n">UniformSynthesizer</span><span class="p">,</span>
+    <span class="n">VEEGANSynthesizer</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">benchmark</span><span class="p">(</span><span class="n">synthesizers</span><span class="o">=</span><span class="n">all_synthesizers</span><span class="p">)</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
-<li><p>Call its <code class="docutils literal notranslate"><span class="pre">fit</span></code> method passing the data as well as the lists of categorical and ordinal columns:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">synthesizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">categorical_columns</span><span class="p">,</span> <span class="n">ordinal_columns</span><span class="p">)</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Call its <code class="docutils literal notranslate"><span class="pre">sample</span></code> method passing the number of rows that we want to sample:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampled</span> <span class="o">=</span> <span class="n">synthesizer</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This will return a numpy matrix of sampeld data with the same columns as the original data and
-as many rows as we have requested:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>array([[5.1774925e+01, 0.0000000e+00, 5.3538445e+04, 6.0000000e+00,
-        8.9999313e+00, 2.0000000e+00, 1.0000000e+00, 3.0000000e+00,
-        2.0000000e+00, 1.0000000e+00, 3.7152294e-04, 1.9912617e-04,
-        1.0767025e+01, 0.0000000e+00, 0.0000000e+00],
-       [6.4843109e+01, 0.0000000e+00, 2.6462553e+05, 1.2000000e+01,
-        8.9993210e+00, 1.0000000e+00, 0.0000000e+00, 1.0000000e+00,
-        0.0000000e+00, 0.0000000e+00, 5.3685449e-06, 1.9797031e-03,
-        2.2253288e+01, 0.0000000e+00, 0.0000000e+00],
-       [6.5659584e+01, 5.0000000e+00, 3.6158912e+05, 8.0000000e+00,
-        9.0010223e+00, 0.0000000e+00, 1.2000000e+01, 3.0000000e+00,
-        0.0000000e+00, 0.0000000e+00, 1.0562389e-03, 0.0000000e+00,
-        3.9998917e+01, 0.0000000e+00, 0.0000000e+00]], dtype=float32)
-</pre></div>
+<p>For further details about all the arguments and possibilities that the <code class="docutils literal notranslate"><span class="pre">benchmark</span></code> function offers
+please refer to the <a class="reference external" href="BENCHMARK.md">benchmark documentation</a></p>
 </div>
 </div>
-<div class="section" id="benchmarking-the-demo-synthesizers">
-<h2>Benchmarking the Demo Synthesizers<a class="headerlink" href="#benchmarking-the-demo-synthesizers" title="Permalink to this headline">¶</a></h2>
-<p>Evaluating the performance of any of the Demo synthesizers as as simple as:</p>
-<ol class="arabic simple">
-<li><p>Creaeting an instance of the synthesizer:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">synthesizer</span> <span class="o">=</span> <span class="n">IndependentSynthesizer</span><span class="p">()</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Passing the <code class="docutils literal notranslate"><span class="pre">fit_sample</span></code> method of the instance to the <code class="docutils literal notranslate"><span class="pre">benchmark</span></code> function as your
-synthesizer function:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span><span class="p">(</span><span class="n">synthesizer</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="list-of-demo-synthesizers">
-<h2>List of Demo Synthesizers<a class="headerlink" href="#list-of-demo-synthesizers" title="Permalink to this headline">¶</a></h2>
-<p>Here we list all implemented synthesizers and corresponding publications.</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>Reference</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IdentitySynthesizer</span></code></p></td>
-<td><p>The synthetic data is the same as training data.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UniformSynthesizer</span></code></p></td>
-<td><p>Each column in the synthetic data is sampled independently and uniformly.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IndependentSynthesizer</span></code></p></td>
-<td><p>Each column in the synthetic data is sampled independently. Continuous columns are modeled by Gaussian mixture model. Discrete columns are sampled from the PMF of training data.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CLBNSynthesizer</span></code></p></td>
-<td></td>
-<td><p>[2]</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PrivBNSynthesizer</span></code></p></td>
-<td></td>
-<td><p>[3]</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TableganSynthesizer</span></code></p></td>
-<td></td>
-<td><p>[4]</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VEEGANSynthesizer</span></code></p></td>
-<td></td>
-<td><p>[5]</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TVAESynthesizer</span></code></p></td>
-<td></td>
-<td><p>[1]</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CTGANSynthesizer</span></code></p></td>
-<td></td>
-<td><p>[1]</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="what-s-next">
-<h1>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h1>
-<p>For more details about <strong>SDGym</strong> and all its possibilities and features, please check the
-<a class="reference external" href="https://sdv-dev.github.io/SDGym/">documentation site</a>.</p>
-<p>There you can learn more about
-<a class="reference external" href="https://HDI-Project.github.io/SDGym/community/contributing.html">how to contribute to SDGym</a>
-in order to help us developing new features or cool ideas.</p>
+<div class="section" id="additional-references">
+<h1>Additional References<a class="headerlink" href="#additional-references" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Datasets used in SDGym are detailed <a class="reference external" href="DATASETS.md">here</a>.</p></li>
+<li><p>How to write a synthesizer is detailed <a class="reference external" href="SYNTHESIZERS.md">here</a>.</p></li>
+<li><p>How to use benchmark function is detailed <a class="reference external" href="BENCHMARK.md">here</a>.</p></li>
+<li><p>Detailed leaderboard results for all the releases are available <a class="reference external" href="https://docs.google.com/spreadsheets/d/1hllKn_wDjkr_Yqq9uO5TlQNlj767FSaONC3vrtovaOQ/edit?usp=sharing">here</a>.</p></li>
+</ul>
 </div>
 <div class="section" id="related-projects">
 <h1>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this headline">¶</a></h1>
@@ -596,24 +481,23 @@ in order to help us developing new features or cool ideas.</p>
 <h2>SDV<a class="headerlink" href="#sdv" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/HDI-Project/SDV">SDV</a>, for Synthetic Data Vault, is the end-user library for
 synthesizing data in development under the <a class="reference external" href="https://hdi-dai.lids.mit.edu/">HDI Project</a>.
-SDV allows you to easily model and sample relational datasets using Copulas thought a simple API.
+SDV allows you to easily model and sample relational datasets using Copulas through a simple API.
 Other features include anonymization of Personal Identifiable Information (PII) and preserving
 relational integrity on sampled records.</p>
 </div>
+<div class="section" id="ctgan">
+<h2>CTGAN<a class="headerlink" href="#ctgan" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/sdv-dev/CTGAN">CTGAN</a> is the GAN based model for synthesizing tabular data
+presented in the <a class="reference external" href="https://arxiv.org/abs/1907.00503">Modeling Tabular data using Conditional GAN</a>
+paper. It’s also developed by the <a class="reference external" href="https://dai-lab.github.io/">MIT’s Data to AI Lab</a> and is under
+active development.</p>
+</div>
 <div class="section" id="tgan">
 <h2>TGAN<a class="headerlink" href="#tgan" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/sdv-dev/TGAN">TGAN</a> is a GAN based model for synthesizing tabular data.
+<p><a class="reference external" href="https://github.com/sdv-dev/TGAN">TGAN</a> is another GAN based model for synthesizing tabular data.
 It’s also developed by the <a class="reference external" href="https://dai-lab.github.io/">MIT’s Data to AI Lab</a> and is under
 active development.</p>
 </div>
-</div>
-<div class="section" id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
-<p>[1] Lei Xu, Maria Skoularidou, Alfredo Cuesta-Infante, Kalyan Veeramachaneni. “Modeling tabular data using conditional gan.” (2019) <a class="reference external" href="https://papers.nips.cc/paper/8953-modeling-tabular-data-using-conditional-gan.pdf">(pdf)</a></p>
-<p>[2] C. Chow, Cong Liu. “Approximating discrete probability distributions with dependence trees.” (1968) <a class="reference external" href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.133.9772&amp;rep=rep1&amp;type=pdf">(pdf)</a></p>
-<p>[3] Jun  Zhang, Graham Cormode, Cecilia M. Procopiuc, Divesh Srivastava, and Xiaokui Xiao. “Privbayes: Private data release via bayesian networks.” (2017) <a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3134428">(pdf)</a></p>
-<p>[4] Noseong Park, Mahmoud Mohammadi, Kshitij Gorde, Sushil Jajodia, Hongkyu Park, Youngmin Kim. “Data synthesis based on generative adversarial networks.” (2018) <a class="reference external" href="https://dl.acm.org/ft_gateway.cfm?id=3242929&amp;type=pdf">(pdf)</a></p>
-<p>[5] Akash Srivastava, Lazar Valkov, Chris Russell, Michael U. Gutmann, Charles Sutton. “Veegan: Reducing mode collapse in gans using implicit variational learning.” (2017) <a class="reference external" href="https://papers.nips.cc/paper/6923-veegan-reducing-mode-collapse-in-gans-using-implicit-variational-learning.pdf">(pdf)</a></p>
 </div>
 
 

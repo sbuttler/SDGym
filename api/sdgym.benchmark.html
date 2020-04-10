@@ -86,34 +86,33 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">SDGym - Synthetic Data Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#overview">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#what-is-a-synthesizer-function">What is a synthesizer function?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#what-data-should-your-synthesizer-work-with">What data should your synthesizer work with?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#what-is-a-synthetic-data-generator">What is a Synthetic Data Generator?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../readme.html#benchmark-datasets">Benchmark datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#demo-synthesizers">Demo Synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#current-leaderboard">Current Leaderboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#gaussian-mixture-simulated-data">Gaussian Mixture Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#bayesian-networks-simulated-data">Bayesian Networks Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#real-world-datasets">Real World Datasets</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#install">Install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../readme.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../readme.html#install-with-pip">Install with pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#install-from-source">Install from source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#install-for-development">Install for Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#compile-c-dependencies">Compile C++ dependencies</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../readme.html#id1">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#benchmark">Benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#using-the-demo-synthesizers">Using the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#benchmarking-the-demo-synthesizers">Benchmarking the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../readme.html#list-of-demo-synthesizers">List of Demo Synthesizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#benchmarking-your-own-synthesizer">Benchmarking your own synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#benchmarking-the-sdgym-synthesizers">Benchmarking the SDGym Synthesizers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../readme.html#what-s-next">What’s next?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#additional-references">Additional References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#related-projects">Related Projects</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../readme.html#sdv">SDV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#ctgan">CTGAN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../readme.html#tgan">TGAN</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../readme.html#references">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul class="current">
@@ -228,15 +227,88 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#sdgym.benchmark.benchmark" title="sdgym.benchmark.benchmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">benchmark</span></code></a>(synthesizer[, datasets, repeat])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sdgym.benchmark.benchmark" title="sdgym.benchmark.benchmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">benchmark</span></code></a>(synthesizers[, datasets, …])</p></td>
+<td><p>Compute the benchmark scores for the synthesizers and return a leaderboard.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sdgym.benchmark.compute_benchmark" title="sdgym.benchmark.compute_benchmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_benchmark</span></code></a>(synthesizer[, datasets, …])</p></td>
+<td><p>Compute the scores of a synthesizer over a list of datasets.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="function">
 <dt id="sdgym.benchmark.benchmark">
-<code class="sig-prename descclassname">sdgym.benchmark.</code><code class="sig-name descname">benchmark</code><span class="sig-paren">(</span><em class="sig-param">synthesizer, datasets=['adult', 'alarm', 'asia', 'census', 'child', 'covtype', 'credit', 'grid', 'gridr', 'insurance', 'intrusion', 'mnist12', 'mnist28', 'news', 'ring'], repeat=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/benchmark.html#benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.benchmark.benchmark" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">sdgym.benchmark.</code><code class="sig-name descname">benchmark</code><span class="sig-paren">(</span><em class="sig-param">synthesizers, datasets=['adult', 'alarm', 'asia', 'census', 'child', 'covtype', 'credit', 'grid', 'gridr', 'insurance', 'intrusion', 'mnist12', 'mnist28', 'news', 'ring'], iterations=3, add_leaderboard=True, leaderboard_path='/home/travis/build/sdv-dev/SDGym/sdgym/leaderboard.csv', replace_existing=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/benchmark.html#benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.benchmark.benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the benchmark scores for the synthesizers and return a leaderboard.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">synthesizers</span></code> object can either be a single synthesizer or, an iterable of
+synthesizers or a dict containing synthesizer names as keys and synthesizers as values.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">add_leaderboard</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, append the obtained scores to the leaderboard
+stored in the <code class="docutils literal notranslate"><span class="pre">lederboard_path</span></code>. By default, the leaderboard used is the one which
+is included in the package, which contains the scores obtained by the SDGym Synthesizers.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">replace_existing</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and any of the given synthesizers already existed
+in the leaderboard, the old rows are dropped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>synthesizers</strong> (<em>function</em><em>, </em><em>class</em><em>, </em><em>list</em><em>, </em><em>tuple</em><em> or </em><em>dict</em>) – The synthesizer or synthesizers to evaluate. It can be a single synthesizer
+(function or method or class), or an iterable of synthesizers, or a dict
+containing synthesizer names as keys and synthesizers as values. If the input
+is not a dict, synthesizer names will be extracted from the given object.</p></li>
+<li><p><strong>datasets</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Names of the datasets to use for the benchmark. Defaults to all the ones available.</p></li>
+<li><p><strong>iterations</strong> (<em>int</em>) – Number of iterations to perform over each dataset and synthesizer. Defaults to 3.</p></li>
+<li><p><strong>add_leaderboard</strong> (<em>bool</em>) – Whether to append the obtained scores to the previous leaderboard or not. Defaults
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>leaderboard_path</strong> (<em>str</em>) – Path to where the leaderboard is stored. Defaults to the leaderboard included
+with the package, which contains the scores obtained by the SDGym synthesizers.</p></li>
+<li><p><strong>replace_existing</strong> (<em>bool</em>) – Whether to replace old scores or keep them in the returned leaderboard. Defaults
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Table containing one row per synthesizer and one column for each dataset and metric.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sdgym.benchmark.compute_benchmark">
+<code class="sig-prename descclassname">sdgym.benchmark.</code><code class="sig-name descname">compute_benchmark</code><span class="sig-paren">(</span><em class="sig-param">synthesizer, datasets=['adult', 'alarm', 'asia', 'census', 'child', 'covtype', 'credit', 'grid', 'gridr', 'insurance', 'intrusion', 'mnist12', 'mnist28', 'news', 'ring'], iterations=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/benchmark.html#compute_benchmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.benchmark.compute_benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the scores of a synthesizer over a list of datasets.</p>
+<dl class="simple">
+<dt>The results are returned in a raw format as a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing:</dt><dd><ul class="simple">
+<li><p>One row for each dataset+scoring method (for example, a classifier)</p></li>
+<li><p>One column for each computed metric</p></li>
+<li><dl class="simple">
+<dt>The columns:</dt><dd><ul>
+<li><p>dataset</p></li>
+<li><p>distance</p></li>
+<li><p>name (of the scoring method)</p></li>
+<li><p>iteration</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>For example, evaluating a synthesizer on the <code class="docutils literal notranslate"><span class="pre">adult</span></code> and <code class="docutils literal notranslate"><span class="pre">asia</span></code> datasets with 2
+iterations produces a table similar to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span>             <span class="n">name</span>  <span class="nb">iter</span>  <span class="n">distance</span>  <span class="n">accuracy</span>    <span class="n">f1</span>  <span class="n">syn_likelihood</span>  <span class="n">test_likelihood</span>
+  <span class="n">adult</span>  <span class="n">DecisionTree</span><span class="o">...</span>     <span class="mi">0</span>       <span class="mf">0.0</span>      <span class="mf">0.79</span>  <span class="mf">0.65</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+  <span class="n">adult</span>      <span class="n">AdaBoost</span><span class="o">...</span>     <span class="mi">0</span>       <span class="mf">0.0</span>      <span class="mf">0.85</span>  <span class="mf">0.67</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+  <span class="n">adult</span>      <span class="n">Logistic</span><span class="o">...</span>     <span class="mi">0</span>       <span class="mf">0.0</span>      <span class="mf">0.79</span>  <span class="mf">0.66</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+  <span class="n">adult</span>           <span class="n">MLP</span><span class="o">...</span>     <span class="mi">0</span>       <span class="mf">0.0</span>      <span class="mf">0.84</span>  <span class="mf">0.67</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+  <span class="n">adult</span>  <span class="n">DecisionTree</span><span class="o">...</span>     <span class="mi">1</span>       <span class="mf">0.0</span>      <span class="mf">0.80</span>  <span class="mf">0.66</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+  <span class="n">adult</span>      <span class="n">AdaBoost</span><span class="o">...</span>     <span class="mi">1</span>       <span class="mf">0.0</span>      <span class="mf">0.86</span>  <span class="mf">0.68</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+  <span class="n">adult</span>      <span class="n">Logistic</span><span class="o">...</span>     <span class="mi">1</span>       <span class="mf">0.0</span>      <span class="mf">0.79</span>  <span class="mf">0.65</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+  <span class="n">adult</span>           <span class="n">MLP</span><span class="o">...</span>     <span class="mi">1</span>       <span class="mf">0.0</span>      <span class="mf">0.84</span>  <span class="mf">0.64</span>             <span class="n">NaN</span>              <span class="n">NaN</span>
+   <span class="n">asia</span>     <span class="n">Bayesian</span> <span class="o">...</span>     <span class="mi">0</span>       <span class="mf">0.0</span>       <span class="n">NaN</span>   <span class="n">NaN</span>           <span class="o">-</span><span class="mf">2.23</span>            <span class="o">-</span><span class="mf">2.24</span>
+   <span class="n">asia</span>     <span class="n">Bayesian</span> <span class="o">...</span>     <span class="mi">1</span>       <span class="mf">0.0</span>       <span class="n">NaN</span>   <span class="n">NaN</span>           <span class="o">-</span><span class="mf">2.23</span>            <span class="o">-</span><span class="mf">2.24</span>
+</pre></div>
+</div>
+</dd></dl>
 
 </div>
 

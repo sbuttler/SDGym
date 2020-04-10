@@ -84,34 +84,33 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">SDGym - Synthetic Data Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#overview">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#what-is-a-synthesizer-function">What is a synthesizer function?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#what-data-should-your-synthesizer-work-with">What data should your synthesizer work with?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#what-is-a-synthetic-data-generator">What is a Synthetic Data Generator?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmark-datasets">Benchmark datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#demo-synthesizers">Demo Synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#current-leaderboard">Current Leaderboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#gaussian-mixture-simulated-data">Gaussian Mixture Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#bayesian-networks-simulated-data">Bayesian Networks Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#real-world-datasets">Real World Datasets</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#install">Install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-with-pip">Install with pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-from-source">Install from source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-for-development">Install for Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#compile-c-dependencies">Compile C++ dependencies</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html#id1">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmark">Benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#using-the-demo-synthesizers">Using the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-the-demo-synthesizers">Benchmarking the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#list-of-demo-synthesizers">List of Demo Synthesizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-your-own-synthesizer">Benchmarking your own synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-the-sdgym-synthesizers">Benchmarking the SDGym Synthesizers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html#what-s-next">What’s next?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#additional-references">Additional References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#related-projects">Related Projects</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#sdv">SDV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#ctgan">CTGAN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#tgan">TGAN</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html#references">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
@@ -213,14 +212,20 @@
             
   <h1>Source code for sdgym.benchmark</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">from</span> <span class="nn">sdgym.data</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="kn">from</span> <span class="nn">sdgym.evaluate</span> <span class="kn">import</span> <span class="n">evaluate</span>
+<span class="kn">from</span> <span class="nn">sdgym.evaluate</span> <span class="kn">import</span> <span class="n">compute_scores</span>
+<span class="kn">from</span> <span class="nn">sdgym.synthesizers</span> <span class="kn">import</span> <span class="n">BaseSynthesizer</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
+<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">LEADERBOARD_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;leaderboard.csv&#39;</span><span class="p">)</span>
 
 <span class="n">DEFAULT_DATASETS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;adult&quot;</span><span class="p">,</span>
@@ -241,20 +246,222 @@
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="benchmark"><a class="viewcode-back" href="../../api/sdgym.benchmark.html#sdgym.benchmark">[docs]</a><span class="k">def</span> <span class="nf">benchmark</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">,</span> <span class="n">datasets</span><span class="o">=</span><span class="n">DEFAULT_DATASETS</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="compute_benchmark"><a class="viewcode-back" href="../../api/sdgym.benchmark.html#sdgym.compute_benchmark">[docs]</a><span class="k">def</span> <span class="nf">compute_benchmark</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">,</span> <span class="n">datasets</span><span class="o">=</span><span class="n">DEFAULT_DATASETS</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the scores of a synthesizer over a list of datasets.</span>
+
+<span class="sd">    The results are returned in a raw format as a ``pandas.DataFrame`` containing:</span>
+<span class="sd">        - One row for each dataset+scoring method (for example, a classifier)</span>
+<span class="sd">        - One column for each computed metric</span>
+<span class="sd">        - The columns:</span>
+<span class="sd">            - dataset</span>
+<span class="sd">            - distance</span>
+<span class="sd">            - name (of the scoring method)</span>
+<span class="sd">            - iteration</span>
+
+<span class="sd">    For example, evaluating a synthesizer on the ``adult`` and ``asia`` datasets with 2</span>
+<span class="sd">    iterations produces a table similar to this::</span>
+
+<span class="sd">        dataset             name  iter  distance  accuracy    f1  syn_likelihood  test_likelihood</span>
+<span class="sd">          adult  DecisionTree...     0       0.0      0.79  0.65             NaN              NaN</span>
+<span class="sd">          adult      AdaBoost...     0       0.0      0.85  0.67             NaN              NaN</span>
+<span class="sd">          adult      Logistic...     0       0.0      0.79  0.66             NaN              NaN</span>
+<span class="sd">          adult           MLP...     0       0.0      0.84  0.67             NaN              NaN</span>
+<span class="sd">          adult  DecisionTree...     1       0.0      0.80  0.66             NaN              NaN</span>
+<span class="sd">          adult      AdaBoost...     1       0.0      0.86  0.68             NaN              NaN</span>
+<span class="sd">          adult      Logistic...     1       0.0      0.79  0.65             NaN              NaN</span>
+<span class="sd">          adult           MLP...     1       0.0      0.84  0.64             NaN              NaN</span>
+<span class="sd">           asia     Bayesian ...     0       0.0       NaN   NaN           -2.23            -2.24</span>
+<span class="sd">           asia     Bayesian ...     1       0.0       NaN   NaN           -2.23            -2.24</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Evaluating dataset </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">categoricals</span><span class="p">,</span> <span class="n">ordinals</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Evaluating dataset </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+        <span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">categoricals</span><span class="p">,</span> <span class="n">ordinals</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
-            <span class="n">synthesized</span> <span class="o">=</span> <span class="n">synthesizer</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">categoricals</span><span class="p">,</span> <span class="n">ordinals</span><span class="p">)</span>
-            <span class="n">scores</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">synthesized</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
-            <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;iter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
-            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">synthesized</span> <span class="o">=</span> <span class="n">synthesizer</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">categoricals</span><span class="p">,</span> <span class="n">ordinals</span><span class="p">)</span>
+                <span class="n">scores</span> <span class="o">=</span> <span class="n">compute_scores</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">synthesized</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_name</span>
+                <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;iteration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Error computing scores for </span><span class="si">%s</span><span class="s1"> on dataset </span><span class="si">%s</span><span class="s1"> - iteration </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                                 <span class="n">_get_synthesizer_name</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">),</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">iteration</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_dataset_summary</span><span class="p">(</span><span class="n">grouped_df</span><span class="p">):</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">grouped_df</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">grouped_df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">dataset</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="k">return</span> <span class="n">scores</span>
+
+
+<span class="k">def</span> <span class="nf">_summarize_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes a summary of the scores obtained by a synthesizer.</span>
+
+<span class="sd">    The raw scores returned by the ``compute_benchmark`` function are summarized</span>
+<span class="sd">    by grouping them by dataset and computing the average.</span>
+
+<span class="sd">    The results are then put in a ``pandas.Series`` object with one value per</span>
+<span class="sd">    dataset and metric.</span>
+
+<span class="sd">    As an example, the summary of a synthesizer that has been evaluated on the</span>
+<span class="sd">    ``adult`` and the ``asia`` datasets produces the following output::</span>
+
+<span class="sd">        adult/accuracy          0.8765</span>
+<span class="sd">        adult/f1_micro          0.7654</span>
+<span class="sd">        adult/f1_macro          0.7654</span>
+<span class="sd">        asia/syn_likelihood    -2.5364</span>
+<span class="sd">        asia/test_likelihood   -2.4321</span>
+<span class="sd">        dtype: float64</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scores (pandas.DataFrame):</span>
+<span class="sd">            Raw Scores dataframe as returned by the ``compute_benchmark`` function.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.Series:</span>
+<span class="sd">            Summarized scores series in the format described above.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;distance&#39;</span><span class="p">,</span> <span class="s1">&#39;iteration&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;dataset&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_dataset_summary</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">grouped</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+        <span class="c1"># If more than one dataset, grouped result is a series</span>
+        <span class="c1"># with a multilevel index.</span>
+        <span class="k">return</span> <span class="n">grouped</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Otherwise, if there is only one dataset, it is DataFrame</span>
+    <span class="k">return</span> <span class="n">grouped</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_get_synthesizer_name</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the name of the synthesizer function or class.</span>
+
+<span class="sd">    If the given synthesizer is a function, return its name.</span>
+<span class="sd">    If it is a method, return the name of the class to which</span>
+<span class="sd">    the method belongs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        synthesizer (function or method):</span>
+<span class="sd">            The synthesizer function or method.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str:</span>
+<span class="sd">            Name of the function or the class to which the method belongs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">):</span>
+        <span class="n">synthesizer_name</span> <span class="o">=</span> <span class="n">synthesizer</span><span class="o">.</span><span class="vm">__self__</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">synthesizer_name</span> <span class="o">=</span> <span class="n">synthesizer</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="k">return</span> <span class="n">synthesizer_name</span>
+
+
+<span class="k">def</span> <span class="nf">_get_synthesizers</span><span class="p">(</span><span class="n">synthesizers</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the dict of synthesizers from the input value.</span>
+
+<span class="sd">    If the input is a synthesizer or an iterable of synthesizers, get their names</span>
+<span class="sd">    and put them on a dict.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        synthesizers (function, class, list, tuple or dict):</span>
+<span class="sd">            A synthesizer (function or method or class) or an iterable of synthesizers</span>
+<span class="sd">            or a dict containing synthesizer names as keys and synthesizers as values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict[str, function]:</span>
+<span class="sd">            dict containing synthesizer names as keys and function as values.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError:</span>
+<span class="sd">            if neither a synthesizer or an iterable or a dict is passed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">synthesizers</span><span class="p">):</span>
+        <span class="n">synthesizers</span> <span class="o">=</span> <span class="p">{</span><span class="n">_get_synthesizer_name</span><span class="p">(</span><span class="n">synthesizers</span><span class="p">):</span> <span class="n">synthesizers</span><span class="p">}</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synthesizers</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">synthesizers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">_get_synthesizer_name</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">):</span> <span class="n">synthesizer</span>
+            <span class="k">for</span> <span class="n">synthesizer</span> <span class="ow">in</span> <span class="n">synthesizers</span>
+        <span class="p">}</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synthesizers</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;`synthesizers` can only be a function, a class, a list or a dict&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">synthesizer</span> <span class="ow">in</span> <span class="n">synthesizers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># If the synthesizer is one of the SDGym Synthesizer classes,</span>
+        <span class="c1"># create and instance and replace it with its fit_sample method.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">,</span> <span class="n">BaseSynthesizer</span><span class="p">):</span>
+            <span class="n">synthesizers</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">synthesizer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_sample</span>
+
+    <span class="k">return</span> <span class="n">synthesizers</span>
+
+
+<div class="viewcode-block" id="benchmark"><a class="viewcode-back" href="../../api/sdgym.benchmark.html#sdgym.benchmark">[docs]</a><span class="k">def</span> <span class="nf">benchmark</span><span class="p">(</span><span class="n">synthesizers</span><span class="p">,</span> <span class="n">datasets</span><span class="o">=</span><span class="n">DEFAULT_DATASETS</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">add_leaderboard</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">leaderboard_path</span><span class="o">=</span><span class="n">LEADERBOARD_PATH</span><span class="p">,</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the benchmark scores for the synthesizers and return a leaderboard.</span>
+
+<span class="sd">    The ``synthesizers`` object can either be a single synthesizer or, an iterable of</span>
+<span class="sd">    synthesizers or a dict containing synthesizer names as keys and synthesizers as values.</span>
+
+<span class="sd">    If ``add_leaderboard`` is ``True``, append the obtained scores to the leaderboard</span>
+<span class="sd">    stored in the ``lederboard_path``. By default, the leaderboard used is the one which</span>
+<span class="sd">    is included in the package, which contains the scores obtained by the SDGym Synthesizers.</span>
+
+<span class="sd">    If ``replace_existing`` is ``True`` and any of the given synthesizers already existed</span>
+<span class="sd">    in the leaderboard, the old rows are dropped.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        synthesizers (function, class, list, tuple or dict):</span>
+<span class="sd">            The synthesizer or synthesizers to evaluate. It can be a single synthesizer</span>
+<span class="sd">            (function or method or class), or an iterable of synthesizers, or a dict</span>
+<span class="sd">            containing synthesizer names as keys and synthesizers as values. If the input</span>
+<span class="sd">            is not a dict, synthesizer names will be extracted from the given object.</span>
+<span class="sd">        datasets (list[str]):</span>
+<span class="sd">            Names of the datasets to use for the benchmark. Defaults to all the ones available.</span>
+<span class="sd">        iterations (int):</span>
+<span class="sd">            Number of iterations to perform over each dataset and synthesizer. Defaults to 3.</span>
+<span class="sd">        add_leaderboard (bool):</span>
+<span class="sd">            Whether to append the obtained scores to the previous leaderboard or not. Defaults</span>
+<span class="sd">            to ``True``.</span>
+<span class="sd">        leaderboard_path (str):</span>
+<span class="sd">            Path to where the leaderboard is stored. Defaults to the leaderboard included</span>
+<span class="sd">            with the package, which contains the scores obtained by the SDGym synthesizers.</span>
+<span class="sd">        replace_existing (bool):</span>
+<span class="sd">            Whether to replace old scores or keep them in the returned leaderboard. Defaults</span>
+<span class="sd">            to ``True``.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame:</span>
+<span class="sd">            Table containing one row per synthesizer and one column for each dataset and metric.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">synthesizers</span> <span class="o">=</span> <span class="n">_get_synthesizers</span><span class="p">(</span><span class="n">synthesizers</span><span class="p">)</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">synthesizer_name</span><span class="p">,</span> <span class="n">synthesizer</span> <span class="ow">in</span> <span class="n">synthesizers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">synthesizer_scores</span> <span class="o">=</span> <span class="n">compute_benchmark</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+        <span class="n">summary_row</span> <span class="o">=</span> <span class="n">_summarize_scores</span><span class="p">(</span><span class="n">synthesizer_scores</span><span class="p">)</span>
+        <span class="n">summary_row</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">synthesizer_name</span>
+        <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">summary_row</span><span class="p">)</span>
+
+    <span class="n">leaderboard</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+    <span class="n">leaderboard</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">add_leaderboard</span><span class="p">:</span>
+        <span class="n">old_leaderboard</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+            <span class="n">leaderboard_path</span><span class="p">,</span>
+            <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span>
+        <span class="p">)[</span><span class="n">leaderboard</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">replace_existing</span><span class="p">:</span>
+            <span class="n">old_leaderboard</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">leaderboard</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">leaderboard</span> <span class="o">=</span> <span class="n">old_leaderboard</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">leaderboard</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">leaderboard</span></div>
 </pre></div>
 
            </div>

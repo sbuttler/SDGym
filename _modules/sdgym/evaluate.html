@@ -84,34 +84,33 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">SDGym - Synthetic Data Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#overview">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#what-is-a-synthesizer-function">What is a synthesizer function?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#what-data-should-your-synthesizer-work-with">What data should your synthesizer work with?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#what-is-a-synthetic-data-generator">What is a Synthetic Data Generator?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmark-datasets">Benchmark datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#demo-synthesizers">Demo Synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#current-leaderboard">Current Leaderboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#gaussian-mixture-simulated-data">Gaussian Mixture Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#bayesian-networks-simulated-data">Bayesian Networks Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#real-world-datasets">Real World Datasets</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#install">Install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-with-pip">Install with pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-from-source">Install from source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-for-development">Install for Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#compile-c-dependencies">Compile C++ dependencies</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html#id1">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmark">Benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#using-the-demo-synthesizers">Using the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-the-demo-synthesizers">Benchmarking the Demo Synthesizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../readme.html#list-of-demo-synthesizers">List of Demo Synthesizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-your-own-synthesizer">Benchmarking your own synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-the-sdgym-synthesizers">Benchmarking the SDGym Synthesizers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html#what-s-next">What’s next?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#additional-references">Additional References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html#related-projects">Related Projects</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#sdv">SDV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#ctgan">CTGAN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../readme.html#tgan">TGAN</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html#references">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
@@ -360,14 +359,6 @@
     <span class="k">return</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">_MODELS</span><span class="p">[</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;problem_type&#39;</span><span class="p">]]</span>
 
 
-<span class="k">def</span> <span class="nf">_model_repr</span><span class="p">(</span><span class="n">model_class</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="p">):</span>
-    <span class="n">model_kwargs</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">model_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="p">)</span>
-
-
 <span class="k">def</span> <span class="nf">_evaluate_multi_classification</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Score classifiers using f1 score and the given train and test data.</span>
 
@@ -387,7 +378,7 @@
     <span class="k">for</span> <span class="n">model_spec</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="p">:</span>
         <span class="n">model_class</span> <span class="o">=</span> <span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
         <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">model_spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kwargs&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
-        <span class="n">model_repr</span> <span class="o">=</span> <span class="n">_model_repr</span><span class="p">(</span><span class="n">model_class</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="p">)</span>
+        <span class="n">model_repr</span> <span class="o">=</span> <span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">model_class</span><span class="p">(</span><span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span>
 
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Evaluating using multiclass classifier </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">model_repr</span><span class="p">)</span>
@@ -421,7 +412,7 @@
     <span class="k">for</span> <span class="n">model_spec</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="p">:</span>
         <span class="n">model_class</span> <span class="o">=</span> <span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
         <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">model_spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kwargs&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
-        <span class="n">model_repr</span> <span class="o">=</span> <span class="n">_model_repr</span><span class="p">(</span><span class="n">model_class</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="p">)</span>
+        <span class="n">model_repr</span> <span class="o">=</span> <span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">model_class</span><span class="p">(</span><span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span>
 
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Evaluating using binary classifier </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">model_repr</span><span class="p">)</span>
@@ -455,7 +446,7 @@
     <span class="k">for</span> <span class="n">model_spec</span> <span class="ow">in</span> <span class="n">regressors</span><span class="p">:</span>
         <span class="n">model_class</span> <span class="o">=</span> <span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
         <span class="n">model_kwargs</span> <span class="o">=</span> <span class="n">model_spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kwargs&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
-        <span class="n">model_repr</span> <span class="o">=</span> <span class="n">_model_repr</span><span class="p">(</span><span class="n">model_class</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="p">)</span>
+        <span class="n">model_repr</span> <span class="o">=</span> <span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">model_class</span><span class="p">(</span><span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span>
 
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Evaluating using regressor </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">model_repr</span><span class="p">)</span>
@@ -574,13 +565,13 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="evaluate"><a class="viewcode-back" href="../../api/sdgym.evaluate.html#sdgym.evaluate.evaluate">[docs]</a><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">synthesized_data</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+<div class="viewcode-block" id="compute_scores"><a class="viewcode-back" href="../../api/sdgym.evaluate.html#sdgym.evaluate.compute_scores">[docs]</a><span class="k">def</span> <span class="nf">compute_scores</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">synthesized_data</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
     <span class="n">evaluator</span> <span class="o">=</span> <span class="n">_EVALUATORS</span><span class="p">[</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;problem_type&#39;</span><span class="p">]]</span>
 
-    <span class="n">performance</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="n">synthesized_data</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
-    <span class="n">performance</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_compute_distance</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">synthesized_data</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="n">synthesized_data</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_compute_distance</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">synthesized_data</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">performance</span></div>
+    <span class="k">return</span> <span class="n">scores</span></div>
 </pre></div>
 
            </div>
