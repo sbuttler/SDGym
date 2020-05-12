@@ -124,6 +124,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/sdgym.constants.html">sdgym.constants module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sdgym.data.html">sdgym.data module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sdgym.evaluate.html">sdgym.evaluate module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sdgym.results.html">sdgym.results module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/sdgym.html#module-sdgym">Module contents</a></li>
@@ -269,49 +270,49 @@ documentation</a>.</p>
 each Synthesizer obtained the best score.</p>
 <p>The complete scores table can be found in the <a class="reference external" href="SYNTHESIZERS.md#leaderboard">synthesizers document</a>
 and it can also be downloaded as a CSV file form here: <a class="reference external" href="sdgym/leaderboard.csv">sdgym/leaderboard.csv</a></p>
-<p>Detailed leaderboard results for all the releases are available <a class="reference external" href="https://docs.google.com/spreadsheets/d/1hllKn_wDjkr_Yqq9uO5TlQNlj767FSaONC3vrtovaOQ/edit?usp=sharing">in this Google Docs Spreadsheet</a>.</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">warning</dt>
-<dd class="field-odd"><p><strong>NOTE</strong>: The following leaderboard and the detailed results for 0.2.0 are derived from</p>
-</dd>
-</dl>
-<p>the paper. We are currently running all synthesizers with the new API and we will update the
-leaderboard with the 0.2.1 release (coming soon!).</p>
-</div></blockquote>
+<p>Detailed leaderboard results for all the releases are available <a class="reference external" href="https://docs.google.com/spreadsheets/d/1iNJDVG_tIobcsGUG5Gn4iLa565vVhz2U/edit">in this Google Docs Spreadsheet</a>.</p>
 <div class="section" id="gaussian-mixture-simulated-data">
 <h3>Gaussian Mixture Simulated Data<a class="headerlink" href="#gaussian-mixture-simulated-data" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Synthesizer</p></th>
+<th class="head"><p>0.2.1.dev0</p></th>
 <th class="head"><p>0.2.0</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>CLBNSynthesizer</p></td>
+<td><p>0</p></td>
 <td><p>1</p></td>
 </tr>
-<tr class="row-odd"><td><p>PrivBNSynthesizer</p></td>
+<tr class="row-odd"><td><p>CTGANSynthesizer</p></td>
 <td><p>0</p></td>
+<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>MedganSynthesizer</p></td>
 <td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>VEEGANSynthesizer</p></td>
 <td><p>0</p></td>
 </tr>
-<tr class="row-even"><td><p>TableganSynthesizer</p></td>
+<tr class="row-odd"><td><p>PrivBNSynthesizer</p></td>
+<td><p>0</p></td>
 <td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>TVAESynthesizer</strong></p></td>
+<tr class="row-even"><td><p>TVAESynthesizer</p></td>
+<td><p>5</p></td>
 <td><p>4</p></td>
 </tr>
-<tr class="row-even"><td><p>CTGANSynthesizer</p></td>
+<tr class="row-odd"><td><p>TableganSynthesizer</p></td>
 <td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>VEEGANSynthesizer</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
 </tr>
 </tbody>
 </table>
@@ -320,34 +321,43 @@ leaderboard with the 0.2.1 release (coming soon!).</p>
 <h3>Bayesian Networks Simulated Data<a class="headerlink" href="#bayesian-networks-simulated-data" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Synthesizer</p></th>
+<th class="head"><p>0.2.1.dev0</p></th>
 <th class="head"><p>0.2.0</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>CLBNSynthesizer</p></td>
 <td><p>0</p></td>
+<td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>PrivBNSynthesizer</strong></p></td>
-<td><p>6</p></td>
+<tr class="row-odd"><td><p>CTGANSynthesizer</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>MedganSynthesizer</p></td>
+<td><p>4</p></td>
 <td><p>1</p></td>
 </tr>
-<tr class="row-odd"><td><p>VEEGANSynthesizer</p></td>
-<td><p>0</p></td>
+<tr class="row-odd"><td><p>PrivBNSynthesizer</p></td>
+<td><p>3</p></td>
+<td><p>6</p></td>
 </tr>
-<tr class="row-even"><td><p>TableganSynthesizer</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>TVAESynthesizer</p></td>
+<tr class="row-even"><td><p>TVAESynthesizer</p></td>
+<td><p>1</p></td>
 <td><p>3</p></td>
 </tr>
-<tr class="row-even"><td><p>CTGANSynthesizer</p></td>
+<tr class="row-odd"><td><p>TableganSynthesizer</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>VEEGANSynthesizer</p></td>
+<td><p>0</p></td>
 <td><p>0</p></td>
 </tr>
 </tbody>
@@ -357,35 +367,44 @@ leaderboard with the 0.2.1 release (coming soon!).</p>
 <h3>Real World Datasets<a class="headerlink" href="#real-world-datasets" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Synthesizer</p></th>
+<th class="head"><p>0.2.1.dev0</p></th>
 <th class="head"><p>0.2.0</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>CLBNSynthesizer</p></td>
 <td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>PrivBNSynthesizer</p></td>
 <td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>CTGANSynthesizer</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
 </tr>
 <tr class="row-even"><td><p>MedganSynthesizer</p></td>
 <td><p>0</p></td>
-</tr>
-<tr class="row-odd"><td><p>VEEGANSynthesizer</p></td>
 <td><p>0</p></td>
 </tr>
-<tr class="row-even"><td><p>TableganSynthesizer</p></td>
+<tr class="row-odd"><td><p>PrivBNSynthesizer</p></td>
+<td><p>0</p></td>
 <td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>TVAESynthesizer</strong></p></td>
+<tr class="row-even"><td><p>TVAESynthesizer</p></td>
+<td><p>5</p></td>
 <td><p>5</p></td>
 </tr>
-<tr class="row-even"><td><p>CTGANSynthesizer</p></td>
-<td><p>3</p></td>
+<tr class="row-odd"><td><p>TableganSynthesizer</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>VEEGANSynthesizer</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
 </tr>
 </tbody>
 </table>
@@ -476,7 +495,7 @@ please refer to the <a class="reference external" href="BENCHMARK.md">benchmark 
 <li><p>Datasets used in SDGym are detailed <a class="reference external" href="DATASETS.md">here</a>.</p></li>
 <li><p>How to write a synthesizer is detailed <a class="reference external" href="SYNTHESIZERS.md">here</a>.</p></li>
 <li><p>How to use benchmark function is detailed <a class="reference external" href="BENCHMARK.md">here</a>.</p></li>
-<li><p>Detailed leaderboard results for all the releases are available <a class="reference external" href="https://docs.google.com/spreadsheets/d/1hllKn_wDjkr_Yqq9uO5TlQNlj767FSaONC3vrtovaOQ/edit?usp=sharing">here</a>.</p></li>
+<li><p>Detailed leaderboard results for all the releases are available <a class="reference external" href="https://docs.google.com/spreadsheets/d/1iNJDVG_tIobcsGUG5Gn4iLa565vVhz2U/edit">here</a>.</p></li>
 </ul>
 </div>
 <div class="section" id="related-projects">
@@ -542,6 +561,7 @@ active development.</p>
 <li class="toctree-l3"><a class="reference internal" href="api/sdgym.constants.html">sdgym.constants module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sdgym.data.html">sdgym.data module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/sdgym.evaluate.html">sdgym.evaluate module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/sdgym.results.html">sdgym.results module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/sdgym.html#module-sdgym">Module contents</a></li>

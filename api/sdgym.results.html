@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; SDGym 0.2.1.dev0 documentation</title>
+  <title>sdgym.results module &mdash; SDGym 0.2.1.dev0 documentation</title>
   
 
   
@@ -36,7 +36,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="../contributing.html" />
+    <link rel="prev" title="sdgym.evaluate module" href="sdgym.evaluate.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -113,20 +115,20 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/sdgym.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api/sdgym.html#subpackages">Subpackages</a><ul class="simple">
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sdgym.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sdgym.html#subpackages">Subpackages</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../api/sdgym.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/sdgym.benchmark.html">sdgym.benchmark module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/sdgym.constants.html">sdgym.constants module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/sdgym.data.html">sdgym.data module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/sdgym.evaluate.html">sdgym.evaluate module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/sdgym.results.html">sdgym.results module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="sdgym.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sdgym.benchmark.html">sdgym.benchmark module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sdgym.constants.html">sdgym.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sdgym.data.html">sdgym.data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sdgym.evaluate.html">sdgym.evaluate module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sdgym.results module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../api/sdgym.html#module-sdgym">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdgym.html#module-sdgym">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
@@ -199,10 +201,18 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+          <li><a href="sdgym.html">sdgym package</a> &raquo;</li>
+        
+      <li>sdgym.results module</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/sdv-dev/SDGym/blob/master/docs/api/sdgym.results.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
         
       </li>
     
@@ -214,17 +224,81 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="sdgym/benchmark.html">sdgym.benchmark</a></li>
-<li><a href="sdgym/data.html">sdgym.data</a></li>
-<li><a href="sdgym/evaluate.html">sdgym.evaluate</a></li>
-<li><a href="sdgym/results.html">sdgym.results</a></li>
-</ul>
+  <div class="section" id="module-sdgym.results">
+<span id="sdgym-results-module"></span><h1>sdgym.results module<a class="headerlink" href="#module-sdgym.results" title="Permalink to this headline">¶</a></h1>
+<p><strong>Functions</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sdgym.results.add_sheet" title="sdgym.results.add_sheet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_sheet</span></code></a>(dfs, name, writer, cell_fmt, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sdgym.results.get_summary" title="sdgym.results.get_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_summary</span></code></a>(results, summary_function)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sdgym.results.get_wins" title="sdgym.results.get_wins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_wins</span></code></a>(scores)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sdgym.results.load_results" title="sdgym.results.load_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_results</span></code></a>(files)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sdgym.results.summarize_results" title="sdgym.results.summarize_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarize_results</span></code></a>(input_paths, output_path)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sdgym.results.write_results" title="sdgym.results.write_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_results</span></code></a>(results, summary, output)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="sdgym.results.add_sheet">
+<code class="sig-prename descclassname">sdgym.results.</code><code class="sig-name descname">add_sheet</code><span class="sig-paren">(</span><em class="sig-param">dfs</em>, <em class="sig-param">name</em>, <em class="sig-param">writer</em>, <em class="sig-param">cell_fmt</em>, <em class="sig-param">index_fmt</em>, <em class="sig-param">header_fmt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/results.html#add_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.results.add_sheet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdgym.results.get_summary">
+<code class="sig-prename descclassname">sdgym.results.</code><code class="sig-name descname">get_summary</code><span class="sig-paren">(</span><em class="sig-param">results</em>, <em class="sig-param">summary_function</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/results.html#get_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.results.get_summary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdgym.results.get_wins">
+<code class="sig-prename descclassname">sdgym.results.</code><code class="sig-name descname">get_wins</code><span class="sig-paren">(</span><em class="sig-param">scores</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/results.html#get_wins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.results.get_wins" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdgym.results.load_results">
+<code class="sig-prename descclassname">sdgym.results.</code><code class="sig-name descname">load_results</code><span class="sig-paren">(</span><em class="sig-param">files</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/results.html#load_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.results.load_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdgym.results.summarize_results">
+<code class="sig-prename descclassname">sdgym.results.</code><code class="sig-name descname">summarize_results</code><span class="sig-paren">(</span><em class="sig-param">input_paths</em>, <em class="sig-param">output_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/results.html#summarize_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.results.summarize_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sdgym.results.write_results">
+<code class="sig-prename descclassname">sdgym.results.</code><code class="sig-name descname">write_results</code><span class="sig-paren">(</span><em class="sig-param">results</em>, <em class="sig-param">summary</em>, <em class="sig-param">output</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sdgym/results.html#write_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdgym.results.write_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sdgym.evaluate.html" class="btn btn-neutral float-left" title="sdgym.evaluate module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

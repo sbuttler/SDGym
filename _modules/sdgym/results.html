@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sdgym.results &mdash; SDGym 0.2.1.dev0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/dai-logo-white.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SDGym
+          
+
+          
+            
+            <img src="../../_static/dai-logo-white-200.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">SDGym - Synthetic Data Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#overview">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#what-is-a-synthetic-data-generator">What is a Synthetic Data Generator?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmark-datasets">Benchmark datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#current-leaderboard">Current Leaderboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#gaussian-mixture-simulated-data">Gaussian Mixture Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#bayesian-networks-simulated-data">Bayesian Networks Simulated Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../readme.html#real-world-datasets">Real World Datasets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#install">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-your-own-synthesizer">Benchmarking your own synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#benchmarking-the-sdgym-synthesizers">Benchmarking the SDGym Synthesizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#additional-references">Additional References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#related-projects">Related Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#sdv">SDV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#ctgan">CTGAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#tgan">TGAN</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/sdgym.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sdgym.html#subpackages">Subpackages</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sdgym.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sdgym.benchmark.html">sdgym.benchmark module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sdgym.constants.html">sdgym.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sdgym.data.html">sdgym.data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sdgym.evaluate.html">sdgym.evaluate module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/sdgym.results.html">sdgym.results module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/sdgym.html#module-sdgym">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#fix-bugs">Fix Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#implement-features">Implement Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#submit-feedback">Submit Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#release-workflow">Release Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#v0-2-0-2020-04-10">v0.2.0 - 2020-04-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#new-features">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../history.html#v0-1-0-2019-08-07">v0.1.0 - 2019-08-07</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SDGym</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sdgym.results</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sdgym.results</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tabulate</span>
+
+<span class="n">GM_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Gaussian Mixture Simulated Data&#39;</span>
+<span class="n">BN_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Bayesian Networks Simulated Data&#39;</span>
+<span class="n">RW_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Real World Datasets&#39;</span>
+
+<span class="n">GM_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grid/syn_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;grid/test_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;gridr/syn_likelihood&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;gridr/test_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;ring/syn_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;ring/test_likelihood&#39;</span><span class="p">]</span>
+<span class="n">BN_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;asia/syn_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;asia/test_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;alarm/syn_likelihood&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;alarm/test_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;child/syn_likelihood&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;child/test_likelihood&#39;</span><span class="p">,</span> <span class="s1">&#39;insurance/syn_likelihood&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;insurance/test_likelihood&#39;</span><span class="p">]</span>
+<span class="n">RW_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;adult/f1&#39;</span><span class="p">,</span> <span class="s1">&#39;census/f1&#39;</span><span class="p">,</span> <span class="s1">&#39;credit/f1&#39;</span><span class="p">,</span> <span class="s1">&#39;covtype/macro_f1&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;intrusion/macro_f1&#39;</span><span class="p">,</span> <span class="s1">&#39;mnist12/accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;mnist28/accuracy&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;news/r2&#39;</span><span class="p">]</span>
+
+<span class="n">DROP_SYNTHESIZERS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;IdentitySynthesizer&#39;</span><span class="p">,</span> <span class="s1">&#39;IndependentSynthesizer&#39;</span><span class="p">,</span> <span class="s1">&#39;UniformSynthesizer&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="load_results"><a class="viewcode-back" href="../../api/sdgym.results.html#sdgym.results.load_results">[docs]</a><span class="k">def</span> <span class="nf">load_results</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">version_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">version_results</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Synthesizer&#39;</span>
+        <span class="k">for</span> <span class="n">synthesizer</span> <span class="ow">in</span> <span class="n">DROP_SYNTHESIZERS</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">version_results</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">synthesizer</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">pass</span>   <span class="c1"># already not there</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">GM_TITLE</span><span class="p">:</span> <span class="n">version_results</span><span class="p">[</span><span class="n">GM_COLUMNS</span><span class="p">],</span>
+            <span class="n">BN_TITLE</span><span class="p">:</span> <span class="n">version_results</span><span class="p">[</span><span class="n">BN_COLUMNS</span><span class="p">],</span>
+            <span class="n">RW_TITLE</span><span class="p">:</span> <span class="n">version_results</span><span class="p">[</span><span class="n">RW_COLUMNS</span><span class="p">],</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+<div class="viewcode-block" id="get_wins"><a class="viewcode-back" href="../../api/sdgym.results.html#sdgym.results.get_wins">[docs]</a><span class="k">def</span> <span class="nf">get_wins</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="n">is_winner</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">is_winner</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_summary"><a class="viewcode-back" href="../../api/sdgym.results.html#sdgym.results.get_summary">[docs]</a><span class="k">def</span> <span class="nf">get_summary</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">summary_function</span><span class="p">):</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">version</span><span class="p">,</span> <span class="n">scores</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="p">[</span><span class="n">GM_TITLE</span><span class="p">,</span> <span class="n">BN_TITLE</span><span class="p">,</span> <span class="n">RW_TITLE</span><span class="p">]:</span>
+            <span class="n">summary</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">summary_function</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="n">section</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="p">[</span><span class="n">GM_TITLE</span><span class="p">,</span> <span class="n">BN_TITLE</span><span class="p">,</span> <span class="n">RW_TITLE</span><span class="p">]:</span>
+        <span class="n">section_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">summary</span><span class="p">[</span><span class="n">section</span><span class="p">])</span>
+        <span class="n">section_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Synthesizer&#39;</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">section_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">summary</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="o">=</span> <span class="n">section_df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">summary</span></div>
+
+
+<div class="viewcode-block" id="add_sheet"><a class="viewcode-back" href="../../api/sdgym.results.html#sdgym.results.add_sheet">[docs]</a><span class="k">def</span> <span class="nf">add_sheet</span><span class="p">(</span><span class="n">dfs</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">writer</span><span class="p">,</span> <span class="n">cell_fmt</span><span class="p">,</span> <span class="n">index_fmt</span><span class="p">,</span> <span class="n">header_fmt</span><span class="p">):</span>
+    <span class="n">startrow</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">widths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dfs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">dfs</span> <span class="o">=</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">dfs</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">df_name</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dfs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">startrow</span> <span class="o">+=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">df_name</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">startrow</span><span class="o">=</span><span class="n">startrow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">worksheet</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">sheets</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">df_name</span><span class="p">:</span>
+            <span class="n">worksheet</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">startrow</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">df_name</span><span class="p">,</span> <span class="n">index_fmt</span><span class="p">)</span>
+            <span class="n">widths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">widths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_name</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+            <span class="n">worksheet</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">startrow</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">header_fmt</span><span class="p">)</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">column</span><span class="p">),</span> <span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">idx</span><span class="p">:</span>
+                <span class="n">widths</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">widths</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">width</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">widths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
+
+        <span class="n">startrow</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">width</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">widths</span><span class="p">):</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">cell_fmt</span> <span class="k">if</span> <span class="n">idx</span> <span class="k">else</span> <span class="n">index_fmt</span>
+        <span class="n">worksheet</span><span class="o">.</span><span class="n">set_column</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fmt</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_results"><a class="viewcode-back" href="../../api/sdgym.results.html#sdgym.results.write_results">[docs]</a><span class="k">def</span> <span class="nf">write_results</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">summary</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;xlsxwriter&#39;</span><span class="p">)</span>
+    <span class="n">cell_fmt</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">book</span><span class="o">.</span><span class="n">add_format</span><span class="p">({</span>
+        <span class="s2">&quot;font_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Arial&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;font_size&quot;</span><span class="p">:</span> <span class="s2">&quot;10&quot;</span>
+    <span class="p">})</span>
+    <span class="n">index_fmt</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">book</span><span class="o">.</span><span class="n">add_format</span><span class="p">({</span>
+        <span class="s2">&quot;font_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Arial&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;font_size&quot;</span><span class="p">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bold&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="n">header_fmt</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">book</span><span class="o">.</span><span class="n">add_format</span><span class="p">({</span>
+        <span class="s2">&quot;font_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Arial&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;font_size&quot;</span><span class="p">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bold&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;bottom&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">})</span>
+
+    <span class="n">add_sheet</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="s1">&#39;Number of wins per version&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="p">,</span> <span class="n">cell_fmt</span><span class="p">,</span> <span class="n">index_fmt</span><span class="p">,</span> <span class="n">header_fmt</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
+        <span class="n">add_sheet</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">version</span><span class="p">],</span> <span class="n">version</span><span class="p">,</span> <span class="n">writer</span><span class="p">,</span> <span class="n">cell_fmt</span><span class="p">,</span> <span class="n">index_fmt</span><span class="p">,</span> <span class="n">header_fmt</span><span class="p">)</span>
+
+    <span class="n">writer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="summarize_results"><a class="viewcode-back" href="../../api/sdgym.results.html#sdgym.results.summarize_results">[docs]</a><span class="k">def</span> <span class="nf">summarize_results</span><span class="p">(</span><span class="n">input_paths</span><span class="p">,</span> <span class="n">output_path</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">load_results</span><span class="p">(</span><span class="n">input_paths</span><span class="p">)</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">get_summary</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">get_wins</span><span class="p">)</span>
+    <span class="n">write_results</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">summary</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">summary</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Generate Results Summary&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Input path with results.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Output file.&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">summarize_results</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">### </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span>
+            <span class="n">section</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+            <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;github&#39;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Synthesizer&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+            <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">))</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, MIT Data to AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

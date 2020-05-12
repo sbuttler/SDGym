@@ -17,6 +17,7 @@ Submodules
    sdgym.constants
    sdgym.data
    sdgym.evaluate
+   sdgym.results
 
 Module contents
 ---------------

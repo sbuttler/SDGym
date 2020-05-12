@@ -1,0 +1,7 @@
+sdgym.results module
+====================
+
+.. automodule:: sdgym.results
+   :members:
+   :undoc-members:
+   :show-inheritance:
