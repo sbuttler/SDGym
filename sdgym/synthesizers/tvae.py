@@ -126,9 +126,9 @@ class TVAESynthesizer(BaseSynthesizer):
                 optimizerAE.step()
                 self.decoder.sigma.data.clamp_(0.01, 1.0)
 
-                print("Epoch %d, Loss: %.4f" %
-                      (i + 1, loss.detach().cpu()),
-                      flush=True)
+            print("Epoch %d, Loss: %.4f" %
+                  (i + 1, loss.detach().cpu()),
+                  flush=True)
 
     def sample(self, samples):
         self.decoder.eval()
