@@ -105,17 +105,17 @@ class TVAESynthesizer(BaseSynthesizer):
         loader = DataLoader(dataset, batch_size=self.batch_size, shuffle=True, drop_last=True)
 
         data_dim = self.transformer.output_dim
-        encoder = Encoder(data_dim, self.compress_dims, self.embedding_dim).to(self.device)
+        self.encoder = Encoder(data_dim, self.compress_dims, self.embedding_dim).to(self.device)
         self.decoder = Decoder(self.embedding_dim, self.compress_dims, data_dim).to(self.device)
         optimizerAE = Adam(
-            list(encoder.parameters()) + list(self.decoder.parameters()),
+            list(self.encoder.parameters()) + list(self.decoder.parameters()),
             weight_decay=self.l2scale)
 
         for i in range(self.epochs):
             for id_, data in enumerate(loader):
                 optimizerAE.zero_grad()
                 real = data[0].to(self.device)
-                mu, std, logvar = encoder(real)
+                mu, std, logvar = self.encoder(real)
                 eps = torch.randn_like(std)
                 emb = eps * std + mu
                 rec, sigmas = self.decoder(emb)
@@ -125,6 +125,10 @@ class TVAESynthesizer(BaseSynthesizer):
                 loss.backward()
                 optimizerAE.step()
                 self.decoder.sigma.data.clamp_(0.01, 1.0)
+
+                print("Epoch %d, Loss: %.4f" %
+                      (i + 1, loss.detach().cpu()),
+                      flush=True)
 
     def sample(self, samples):
         self.decoder.eval()
